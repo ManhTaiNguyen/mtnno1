@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:mtnno1/pages/login.dart';
 import 'package:mtnno1/pages/signup.dart';
 import 'package:mtnno1/widget/content_model.dart';
 import 'package:mtnno1/widget/widget_support.dart';
@@ -41,31 +43,35 @@ class _OnboardState extends State<Onboard> {
                 });
               },
               itemBuilder: (_, i) {
-                return Padding(
-                  padding: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        contents[i].image,
-                        height: 450,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(
-                        height: 40.0,
-                      ),
-                      Text(
-                        contents[i].title,
-                        style: AppWidget.SemiBoldTextFieldStyle(),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Text(
-                        contents[i].description,
-                        style: AppWidget.LightTextFieldStyle(),
-                      ),
-                    ],
+                return SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          contents[i].image,
+                          height: 450,
+                          width: MediaQuery.of(context).size.width,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(
+                          height: 40.0,
+                        ),
+                        Text(
+                          contents[i].title,
+                          style: AppWidget.SemiBoldTextFieldStyle(),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          contents[i].description,
+                          style: AppWidget.LightTextFieldStyle(),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -84,7 +90,7 @@ class _OnboardState extends State<Onboard> {
             onTap: () {
               if (currentIndex == contents.length - 1) {
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => SignUp()));
+                    context, MaterialPageRoute(builder: (context) => Login()));
               }
               _controller.nextPage(
                   duration: Duration(microseconds: 100),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mtnno1/details.dart';
-import 'package:mtnno1/widget_support.dart';
+import 'package:mtnno1/pages/details.dart';
+import 'package:mtnno1/widget/widget_support.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

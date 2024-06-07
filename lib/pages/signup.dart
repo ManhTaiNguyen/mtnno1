@@ -13,7 +13,8 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Stack(
           children: [
             Container(
@@ -38,12 +39,12 @@ class _SignUpState extends State<SignUp> {
               child: Text(""),
             ),
             Container(
-              margin: EdgeInsets.only(top: 60.0, left: 20.0, right: 20.0),
+              margin: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
               child: Column(
                 children: [
                   Center(
                     child: Image.asset(
-                      "logo-mtn.png",
+                      "images/logo-mtn.png",
                       width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
                     ),
@@ -61,70 +62,73 @@ class _SignUpState extends State<SignUp> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          Text(
-                            "Sign up",
-                            style: AppWidget.HeadlineTextFieldStyle(),
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
-                                hintText: 'Name',
-                                hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                suffixIcon: Icon(Icons.person_outlined)),
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
-                                hintText: 'Email',
-                                hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                suffixIcon: Icon(Icons.email_outlined)),
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                hintText: 'Password',
-                                hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                suffixIcon: Icon(Icons.password_outlined)),
-                          ),
-                          SizedBox(
-                            height: 80.0,
-                          ),
-                          Material(
-                            elevation: 5.0,
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 8.0),
-                              width: 200,
-                              decoration: BoxDecoration(
-                                  color: Color(0xffff5722),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Center(
-                                child: Text("SIGNUP",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold)),
+                      child: SingleChildScrollView(
+                        physics: NeverScrollableScrollPhysics(),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            Text(
+                              "Sign up",
+                              style: AppWidget.HeadlineTextFieldStyle(),
+                            ),
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  hintText: 'Name',
+                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
+                                  suffixIcon: Icon(Icons.person_outlined)),
+                            ),
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  hintText: 'Email',
+                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
+                                  suffixIcon: Icon(Icons.email_outlined)),
+                            ),
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
+                                  suffixIcon: Icon(Icons.password_outlined)),
+                            ),
+                            SizedBox(
+                              height: 8.0,
+                            ),
+                            Material(
+                              elevation: 5.0,
+                              borderRadius: BorderRadius.circular(20),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                width: 200,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffff5722),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Text("SIGNUP",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold)),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 70.0,
+                    height: 80.0,
                   ),
                   GestureDetector(
                     onTap: () {

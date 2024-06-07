@@ -14,10 +14,6 @@ List<UnboardingContent> contents = [
   UnboardingContent(
       description:
           'You can pay cash on delivery and\n Card payment is a available',
-      image: "images/screen2",
+      image: "images/screen2.png",
       title: 'Easy and Online Payment'),
-  UnboardingContent(
-      description: 'Delivery your food at your\n Doorstep',
-      image: "images/screen3.png",
-      title: 'Quick Delivery at\n Your Doorstep'),
 ];

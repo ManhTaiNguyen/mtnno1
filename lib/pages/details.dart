@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mtnno1/widget_support.dart';
+import 'package:mtnno1/widget/widget_support.dart';
 
 class Details extends StatefulWidget {
   const Details({super.key});
