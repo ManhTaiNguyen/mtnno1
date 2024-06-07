@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mtnno1/pages/bottomnav.dart';
+import 'package:mtnno1/pages/forgotpassword.dart';
 import 'package:mtnno1/pages/signup.dart';
 import 'package:mtnno1/widget/widget_support.dart';
 
@@ -104,7 +105,7 @@ class _LoginState extends State<Login> {
                                 height: 30.0,
                               ),
                               Text(
-                                "Login",
+                                "Đăng nhập",
                                 style: AppWidget.HeadlineTextFieldStyle(),
                               ),
                               SizedBox(
@@ -128,7 +129,7 @@ class _LoginState extends State<Login> {
                                 controller: userpasswordcontroller,
                                 decoration: const InputDecoration(
                                   icon: Icon(Icons.password_outlined),
-                                  label: Text('Password'),
+                                  label: Text('Mật khẩu'),
                                 ),
                                 obscureText: true,
                                 validator: (value) =>
@@ -139,11 +140,20 @@ class _LoginState extends State<Login> {
                               SizedBox(
                                 height: 20.0,
                               ),
-                              Container(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  "Forgot Password?",
-                                  style: AppWidget.SemiBoldTextFieldStyle(),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ForgotPassword()));
+                                },
+                                child: Container(
+                                  alignment: Alignment.topRight,
+                                  child: Text(
+                                    "Quên mật khẩu?",
+                                    style: AppWidget.SemiBoldTextFieldStyle(),
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -171,7 +181,7 @@ class _LoginState extends State<Login> {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: Center(
-                                      child: Text("LOGIN",
+                                      child: Text("ĐĂNG NHẬP",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 18.0,
@@ -195,7 +205,7 @@ class _LoginState extends State<Login> {
                           MaterialPageRoute(builder: (context) => SignUp()));
                     },
                     child: Text(
-                      "Don't have an account? Sign up",
+                      "Bạn chưa có tài khoản? Đăng ký",
                       style: AppWidget.SemiBoldTextFieldStyle(),
                     ),
                   ),

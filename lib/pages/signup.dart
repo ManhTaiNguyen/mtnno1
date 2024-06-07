@@ -123,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                                 height: 30.0,
                               ),
                               Text(
-                                "Sign up",
+                                "Đăng ký",
                                 style: AppWidget.HeadlineTextFieldStyle(),
                               ),
                               SizedBox(
@@ -138,7 +138,7 @@ class _SignUpState extends State<SignUp> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                    hintText: 'Name',
+                                    hintText: 'Họ và tên',
                                     hintStyle:
                                         AppWidget.SemiBoldTextFieldStyle(),
                                     suffixIcon: Icon(Icons.person_outlined)),
@@ -173,7 +173,7 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 obscureText: true,
                                 decoration: InputDecoration(
-                                    hintText: 'Password',
+                                    hintText: 'Mật khẩu',
                                     hintStyle:
                                         AppWidget.SemiBoldTextFieldStyle(),
                                     suffixIcon: Icon(Icons.password_outlined)),
@@ -204,7 +204,7 @@ class _SignUpState extends State<SignUp> {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: Center(
-                                      child: Text("SIGNUP",
+                                      child: Text("ĐĂNG KÝ",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 18.0,
@@ -228,7 +228,7 @@ class _SignUpState extends State<SignUp> {
                           MaterialPageRoute(builder: (context) => Login()));
                     },
                     child: Text(
-                      "Already have an account? Login",
+                      "Bạn đã có tài khoản? Đăng nhập",
                       style: AppWidget.SemiBoldTextFieldStyle(),
                     ),
                   ),
