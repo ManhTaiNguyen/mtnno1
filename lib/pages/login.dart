@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mtnno1/pages/bottomnav.dart';
 import 'package:mtnno1/pages/signup.dart';
 import 'package:mtnno1/widget/widget_support.dart';
 
@@ -10,6 +12,36 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  String email = "", password = "";
+
+  final _formkey = GlobalKey<FormState>();
+
+  TextEditingController usermailcontroller = new TextEditingController();
+  TextEditingController userpasswordcontroller = new TextEditingController();
+
+  userLogin() async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BottomNav()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+          "No User Found for that Email",
+          style: TextStyle(fontSize: 18.0, color: Colors.black),
+        )));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+          "Wrong Password Provided by User",
+          style: TextStyle(fontSize: 18.0, color: Colors.black),
+        )));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,68 +94,94 @@ class _LoginState extends State<Login> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
-                      child: SingleChildScrollView(
-                        physics: NeverScrollableScrollPhysics(),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Text(
-                              "Login",
-                              style: AppWidget.HeadlineTextFieldStyle(),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Email',
-                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                  suffixIcon: Icon(Icons.email_outlined)),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  hintText: 'Password',
-                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                  suffixIcon: Icon(Icons.password_outlined)),
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Container(
-                              alignment: Alignment.topRight,
-                              child: Text(
-                                "Forgot Password?",
-                                style: AppWidget.SemiBoldTextFieldStyle(),
+                      child: Form(
+                        key: _formkey,
+                        child: SingleChildScrollView(
+                          physics: ScrollPhysics(),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 30.0,
                               ),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                            Material(
-                              elevation: 5.0,
-                              borderRadius: BorderRadius.circular(20),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 8.0),
-                                width: 200,
-                                decoration: BoxDecoration(
-                                    color: Color(0xffff5722),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Text("LOGIN",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold)),
+                              Text(
+                                "Login",
+                                style: AppWidget.HeadlineTextFieldStyle(),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: usermailcontroller,
+                                decoration: const InputDecoration(
+                                  icon: Icon(Icons.email_outlined),
+                                  label: Text('Email'),
+                                ),
+                                validator: (value) =>
+                                    value != null && value.isNotEmpty
+                                        ? null
+                                        : 'Required',
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: userpasswordcontroller,
+                                decoration: const InputDecoration(
+                                  icon: Icon(Icons.password_outlined),
+                                  label: Text('Password'),
+                                ),
+                                obscureText: true,
+                                validator: (value) =>
+                                    value != null && value.isNotEmpty
+                                        ? null
+                                        : 'Required',
+                              ),
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              Container(
+                                alignment: Alignment.topRight,
+                                child: Text(
+                                  "Forgot Password?",
+                                  style: AppWidget.SemiBoldTextFieldStyle(),
                                 ),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 8.0,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  if (_formkey.currentState!.validate()) {
+                                    setState(() {
+                                      email = usermailcontroller.text;
+                                      password = userpasswordcontroller.text;
+                                    });
+                                  }
+                                  userLogin();
+                                },
+                                child: Material(
+                                  elevation: 5.0,
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 8.0),
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffff5722),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Center(
+                                      child: Text("LOGIN",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
