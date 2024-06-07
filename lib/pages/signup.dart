@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mtnno1/pages/bottomnav.dart';
 import 'package:mtnno1/pages/login.dart';
 import 'package:mtnno1/widget/widget_support.dart';
 
@@ -10,6 +12,55 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  String email = "", password = "", name = "";
+
+  TextEditingController namecontroller = new TextEditingController();
+
+  TextEditingController passwordcontroller = new TextEditingController();
+
+  TextEditingController mailcontroller = new TextEditingController();
+
+  final _formkey = GlobalKey<FormState>();
+
+  registrtion() async {
+    if (password != null) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+
+        ScaffoldMessenger.of(context).showSnackBar((SnackBar(
+          backgroundColor: Colors.greenAccent,
+          content: Text(
+            "Đăng ký thành công!",
+            style: TextStyle(fontSize: 20),
+          ),
+        )));
+        Navigator.pushReplacement(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(builder: (context) => BottomNav()));
+      } on FirebaseException catch (e) {
+        if (e.code == 'weak-password') {
+          ScaffoldMessenger.of(context).showSnackBar((SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Mật khẩu quá dễ đoán!!!",
+              style: TextStyle(fontSize: 18),
+            ),
+          )));
+        } else if (e.code == "email-already-in-use") {
+          ScaffoldMessenger.of(context).showSnackBar((SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Tài khoản này đã tồn tại!",
+              style: TextStyle(fontSize: 18),
+            ),
+          )));
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,67 +113,108 @@ class _SignUpState extends State<SignUp> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
-                      child: SingleChildScrollView(
-                        physics: NeverScrollableScrollPhysics(),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Text(
-                              "Sign up",
-                              style: AppWidget.HeadlineTextFieldStyle(),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Name',
-                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                  suffixIcon: Icon(Icons.person_outlined)),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Email',
-                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                  suffixIcon: Icon(Icons.email_outlined)),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  hintText: 'Password',
-                                  hintStyle: AppWidget.SemiBoldTextFieldStyle(),
-                                  suffixIcon: Icon(Icons.password_outlined)),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                            Material(
-                              elevation: 5.0,
-                              borderRadius: BorderRadius.circular(20),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 8.0),
-                                width: 200,
-                                decoration: BoxDecoration(
-                                    color: Color(0xffff5722),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Text("SIGNUP",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold)),
+                      child: Form(
+                        key: _formkey,
+                        child: SingleChildScrollView(
+                          physics: AlwaysScrollableScrollPhysics(),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              Text(
+                                "Sign up",
+                                style: AppWidget.HeadlineTextFieldStyle(),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: namecontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Vui lòng nhập lại tên!';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: 'Name',
+                                    hintStyle:
+                                        AppWidget.SemiBoldTextFieldStyle(),
+                                    suffixIcon: Icon(Icons.person_outlined)),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: mailcontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Vui lòng nhập lại Email!';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: 'Email',
+                                    hintStyle:
+                                        AppWidget.SemiBoldTextFieldStyle(),
+                                    suffixIcon: Icon(Icons.email_outlined)),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: passwordcontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Vui lòng nhập lại mật khẩu!';
+                                  }
+                                  return null;
+                                },
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle:
+                                        AppWidget.SemiBoldTextFieldStyle(),
+                                    suffixIcon: Icon(Icons.password_outlined)),
+                              ),
+                              SizedBox(
+                                height: 8.0,
+                              ),
+                              GestureDetector(
+                                onTap: () async {
+                                  if (_formkey.currentState!.validate()) {
+                                    setState(() {
+                                      email = mailcontroller.text;
+                                      name = namecontroller.text;
+                                      password = passwordcontroller.text;
+                                    });
+                                  }
+                                  registrtion();
+                                },
+                                child: Material(
+                                  elevation: 5.0,
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 8.0),
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffff5722),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Center(
+                                      child: Text("SIGNUP",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold)),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
