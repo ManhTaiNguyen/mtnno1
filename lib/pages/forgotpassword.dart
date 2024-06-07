@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mtnno1/pages/login.dart';
 import 'package:mtnno1/pages/signup.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -38,7 +39,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xffff5722),
       body: Container(
         child: Column(
           children: [
@@ -132,32 +133,64 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       SizedBox(
                         height: 50.0,
                       ),
-                      Row(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Bạn chưa có tài khoản?",
-                              style: TextStyle(
-                                  fontSize: 18.0, color: Colors.white)),
-                          SizedBox(
-                            width: 5.0,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Bạn chưa có tài khoản?",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                  width:
+                                      5.0), // Khoảng cách ngang giữa Text "Bạn chưa có tài khoản?" và "Tạo mới"
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignUp()),
+                                  );
+                                },
+                                child: Text(
+                                  "Tạo mới",
+                                  style: TextStyle(
+                                    color: Colors.red[800],
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: 20.0), // Khoảng cách dọc trên "Đăng nhập"
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SignUp()));
-                            },
-                            child: Text(
-                              "Tạo mới",
-                              style: TextStyle(
-                                  color: Color.fromARGB(225, 184, 166, 6),
+                                      builder: (context) => Login()),
+                                );
+                              },
+                              child: Text(
+                                "Đăng nhập",
+                                style: TextStyle(
+                                  color: Colors.red[800],
                                   fontSize: 20.0,
-                                  fontWeight: FontWeight.w500),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ),
                           ),
                         ],
-                      ),
+                      )
                     ],
                   ),
                 ),
