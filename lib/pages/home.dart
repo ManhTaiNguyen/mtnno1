@@ -14,50 +14,96 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(top: 50.0, left: 20.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Hi mtn,", style: AppWidget.boldTextFieldStyle()),
-                Container(
-                  margin: EdgeInsets.only(right: 20.0),
-                  padding: EdgeInsets.all(3.0),
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Text("Delicious Food", style: AppWidget.HeadlineTextFieldStyle()),
-            Text("Discover and Get Great Food",
-                style: AppWidget.LightTextFieldStyle()),
-            SizedBox(
-              height: 20.0,
-            ),
-            Container(margin: EdgeInsets.only(right: 20.0), child: showItem()),
-            SizedBox(
-              height: 30.0,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
+      body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: Container(
+          margin: EdgeInsets.only(top: 50.0, left: 20.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Details()));
-                    },
-                    child: Container(
+                  Text("Hi mtn,", style: AppWidget.boldTextFieldStyle()),
+                  Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.all(3.0),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text("Delicious Food", style: AppWidget.HeadlineTextFieldStyle()),
+              Text("Discover and Get Great Food",
+                  style: AppWidget.LightTextFieldStyle()),
+              SizedBox(
+                height: 20.0,
+              ),
+              Container(
+                  margin: EdgeInsets.only(right: 20.0), child: showItem()),
+              SizedBox(
+                height: 30.0,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Details()));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(4),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            padding: EdgeInsets.all(14),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  "images/salad2.png",
+                                  height: 150,
+                                  width: 150,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  "Salad thap cam",
+                                  style: AppWidget.SemiBoldTextFieldStyle(),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Fresh and healthy",
+                                  style: AppWidget.LightTextFieldStyle(),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "\$25",
+                                  style: AppWidget.SemiBoldTextFieldStyle(),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Container(
                       margin: EdgeInsets.all(4),
                       child: Material(
                         elevation: 5.0,
@@ -74,21 +120,21 @@ class _HomeState extends State<Home> {
                                 fit: BoxFit.cover,
                               ),
                               Text(
-                                "Salad thap cam",
+                                "Mix veg salad",
                                 style: AppWidget.SemiBoldTextFieldStyle(),
                               ),
                               SizedBox(
                                 height: 5.0,
                               ),
                               Text(
-                                "Fresh and healthy",
+                                "Spicy with Onion",
                                 style: AppWidget.LightTextFieldStyle(),
                               ),
                               SizedBox(
                                 height: 5.0,
                               ),
                               Text(
-                                "\$25",
+                                "\$28",
                                 style: AppWidget.SemiBoldTextFieldStyle(),
                               )
                             ],
@@ -96,107 +142,65 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 15.0,
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(4),
-                    child: Material(
-                      elevation: 5.0,
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        padding: EdgeInsets.all(14),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 10.0),
+                child: Material(
+                  elevation: 5.0,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset("images/salad2.png",
+                            height: 120, width: 120, fit: BoxFit.cover),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        Column(
                           children: [
-                            Image.asset(
-                              "images/salad2.png",
-                              height: 150,
-                              width: 150,
-                              fit: BoxFit.cover,
-                            ),
-                            Text(
-                              "Mix veg salad",
-                              style: AppWidget.SemiBoldTextFieldStyle(),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Mediterranean Chickpea Salad",
+                                style: AppWidget.SemiBoldTextFieldStyle(),
+                              ),
                             ),
                             SizedBox(
                               height: 5.0,
                             ),
-                            Text(
-                              "Spicy with Onion",
-                              style: AppWidget.LightTextFieldStyle(),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Honey goot cheese",
+                                style: AppWidget.LightTextFieldStyle(),
+                              ),
                             ),
                             SizedBox(
                               height: 5.0,
                             ),
-                            Text(
-                              "\$28",
-                              style: AppWidget.SemiBoldTextFieldStyle(),
-                            )
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "\$28",
+                                style: AppWidget.SemiBoldTextFieldStyle(),
+                              ),
+                            ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Container(
-              margin: EdgeInsets.only(right: 10.0),
-              child: Material(
-                elevation: 5.0,
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset("images/salad2.png",
-                          height: 120, width: 120, fit: BoxFit.cover),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Text(
-                              "Mediterranean Chickpea Salad",
-                              style: AppWidget.SemiBoldTextFieldStyle(),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Text(
-                              "Honey goot cheese",
-                              style: AppWidget.LightTextFieldStyle(),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Text(
-                              "\$28",
-                              style: AppWidget.SemiBoldTextFieldStyle(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

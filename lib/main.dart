@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mtnno1/home.dart';
+import 'package:mtnno1/pages/bottomnav.dart';
+import 'package:mtnno1/pages/home.dart';
+import 'package:mtnno1/pages/onboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Home(),
+      home: Onboard(),
     );
   }
 }

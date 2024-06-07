@@ -1,9 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mtnno1/home.dart';
-import 'package:mtnno1/order.dart';
-import 'package:mtnno1/profile.dart';
-import 'package:mtnno1/wallet.dart';
+import 'package:mtnno1/pages/home.dart';
+import 'package:mtnno1/pages/order.dart';
+import 'package:mtnno1/pages/profile.dart';
+import 'package:mtnno1/pages/wallet.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -34,7 +34,6 @@ class _BottomNavState extends State<BottomNav> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       bottomNavigationBar: CurvedNavigationBar(
         height: 65,
         backgroundColor: Colors.white,
