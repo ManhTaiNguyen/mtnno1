@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mtnno1/pages/login.dart';
-import 'package:mtnno1/pages/signup.dart';
 import 'package:mtnno1/widget/content_model.dart';
 import 'package:mtnno1/widget/widget_support.dart';
 

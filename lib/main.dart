@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mtnno1/admin/admin_home.dart';
+import 'package:mtnno1/admin/admin_login.dart';
 import 'package:mtnno1/pages/bottomnav.dart';
 import 'package:mtnno1/pages/home.dart';
 import 'package:mtnno1/pages/onboard.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Onboard(),
+      home: AdminHome(),
     );
   }
 }
