@@ -131,8 +131,7 @@ class _ProfileState extends State<Profile> {
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 23.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Poppins'),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -168,7 +167,7 @@ class _ProfileState extends State<Profile> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Name",
+                                    "Họ và tên",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -180,9 +179,9 @@ class _ProfileState extends State<Profile> {
                                         color: Colors.black,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w600),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -229,9 +228,9 @@ class _ProfileState extends State<Profile> {
                                         color: Colors.black,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w600),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -266,14 +265,14 @@ class _ProfileState extends State<Profile> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Terms and Condition",
+                                    "Điều khoản và dịch vụ",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.w600),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -312,14 +311,14 @@ class _ProfileState extends State<Profile> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Delete Account",
+                                      "Xóa tài khoản",
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.w600),
-                                    )
+                                    ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -359,20 +358,20 @@ class _ProfileState extends State<Profile> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "LogOut",
+                                      "Đăng xuất",
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.w600),
-                                    )
+                                    ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
