@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mtnno1/pages/bottomnav.dart';
 import 'package:mtnno1/pages/login.dart';
+import 'package:mtnno1/service/database.dart';
+import 'package:mtnno1/service/shared_pref.dart';
 import 'package:mtnno1/widget/widget_support.dart';
+import 'package:random_string/random_string.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -27,7 +30,6 @@ class _SignUpState extends State<SignUp> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-
         ScaffoldMessenger.of(context).showSnackBar((SnackBar(
           backgroundColor: Colors.greenAccent,
           content: Text(
@@ -35,6 +37,18 @@ class _SignUpState extends State<SignUp> {
             style: TextStyle(fontSize: 20),
           ),
         )));
+        String Id = randomAlphaNumeric(10);
+        Map<String, dynamic> addUserInfo = {
+          "Name": namecontroller.text,
+          "Email": mailcontroller.text,
+          "Wallet": "0",
+          "Id": Id,
+        };
+        await DatabaseMethods().addUserDetail(addUserInfo, Id);
+        await SharedPreferenceHelper().saveUserName(namecontroller.text);
+        await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
+        await SharedPreferenceHelper().saveUserWallet('0');
+        await SharedPreferenceHelper().saveUserId(Id);
         Navigator.pushReplacement(
             // ignore: use_build_context_synchronously
             context,
