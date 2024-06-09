@@ -165,6 +165,13 @@ class _OrderState extends State<Order> {
                     .UpdateUserwallet(id!, amount.toString());
                 await SharedPreferenceHelper()
                     .saveUserWallet(amount.toString());
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text(
+                    "Thanh toán thành công",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ));
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10.0),

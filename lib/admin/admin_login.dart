@@ -112,6 +112,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                 child: Center(
                                   child: TextFormField(
                                     controller: userpasswordcontroller,
+                                    obscureText: true,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Please Enter Username';
@@ -131,7 +132,7 @@ class _AdminLoginState extends State<AdminLogin> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  LoginAdmin();
+                                  AdminLogin();
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(vertical: 12.0),
@@ -168,7 +169,7 @@ class _AdminLoginState extends State<AdminLogin> {
     );
   }
 
-  LoginAdmin() {
+  AdminLogin() {
     FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
       snapshot.docs.forEach((result) {
         if (result.data()['id'] != usernamecontroller.text.trim()) {
