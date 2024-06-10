@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mtnno1/admin/admin_home.dart';
+import 'package:mtnno1/pages/login.dart';
 import 'package:mtnno1/pages/onboard.dart';
 
 class AdminLogin extends StatefulWidget {
@@ -164,10 +165,8 @@ class _AdminLoginState extends State<AdminLogin> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Onboard()));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Login()));
                         },
                         child: Material(
                           elevation: 10.0,
