@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mtnno1/pages/login.dart';
 import 'package:mtnno1/service/auth.dart';
 import 'package:mtnno1/service/shared_pref.dart';
 import 'package:random_string/random_string.dart';
@@ -330,7 +331,8 @@ class _ProfileState extends State<Profile> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        AuthMethods().SignOut();
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Login()));
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 20.0),

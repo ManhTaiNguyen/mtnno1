@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mtnno1/admin/admin_home.dart';
+import 'package:mtnno1/pages/onboard.dart';
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
@@ -158,6 +159,45 @@ class _AdminLoginState extends State<AdminLogin> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Onboard()));
+                        },
+                        child: Material(
+                          elevation: 10.0,
+                          borderRadius: BorderRadius.circular(10),
+                          child: Center(
+                            child: Container(
+                              padding: EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Color(0xffff5722),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: 30.0),
+                                  Text(
+                                    "Chuyển sang App",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(width: 30.0),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -171,29 +211,26 @@ class _AdminLoginState extends State<AdminLogin> {
 
   AdminLogin() {
     FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
+      bool found = false;
       snapshot.docs.forEach((result) {
-        if (result.data()['id'] != usernamecontroller.text.trim()) {
-          ScaffoldMessenger.of(context).showSnackBar((SnackBar(
-            backgroundColor: Colors.orangeAccent,
-            content: Text(
-              "Your id is not correct",
-              style: TextStyle(fontSize: 18),
-            ),
-          )));
-        } else if (result.data()['password'] !=
-            userpasswordcontroller.text.trim()) {
-          ScaffoldMessenger.of(context).showSnackBar((SnackBar(
-            backgroundColor: Colors.orangeAccent,
-            content: Text(
-              "Your password is not correct",
-              style: TextStyle(fontSize: 18),
-            ),
-          )));
-        } else {
-          Route route = MaterialPageRoute(builder: (context) => AdminHome());
-          Navigator.push(context, route);
+        if (result.data()['id'] == usernamecontroller.text.trim() &&
+            result.data()['password'] == userpasswordcontroller.text.trim()) {
+          found = true;
+          return;
         }
       });
+      if (found) {
+        Route route = MaterialPageRoute(builder: (context) => AdminHome());
+        Navigator.pushReplacement(context, route);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar((SnackBar(
+          backgroundColor: Colors.orangeAccent,
+          content: Text(
+            "Your id or password is not correct",
+            style: TextStyle(fontSize: 18),
+          ),
+        )));
+      }
     });
   }
 }

@@ -55,7 +55,7 @@ class _OnboardState extends State<Onboard> {
                           fit: BoxFit.cover,
                         ),
                         SizedBox(
-                          height: 40.0,
+                          height: 10.0,
                         ),
                         Text(
                           contents[i].title,

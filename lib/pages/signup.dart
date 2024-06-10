@@ -18,9 +18,7 @@ class _SignUpState extends State<SignUp> {
   String email = "", password = "", name = "";
 
   TextEditingController namecontroller = new TextEditingController();
-
   TextEditingController passwordcontroller = new TextEditingController();
-
   TextEditingController mailcontroller = new TextEditingController();
 
   final _formkey = GlobalKey<FormState>();

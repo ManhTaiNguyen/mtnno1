@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mtnno1/admin/admin_login.dart';
 import 'package:mtnno1/pages/bottomnav.dart';
 import 'package:mtnno1/pages/forgotpassword.dart';
 import 'package:mtnno1/pages/signup.dart';
@@ -190,6 +191,45 @@ class _LoginState extends State<Login> {
                                   ),
                                 ),
                               ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AdminLogin()));
+                    },
+                    child: Material(
+                      elevation: 10.0,
+                      borderRadius: BorderRadius.circular(10),
+                      child: Center(
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 30.0),
+                              Text(
+                                "Chuyển sang Admin login",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(width: 30.0),
                             ],
                           ),
                         ),

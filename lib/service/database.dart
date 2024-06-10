@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mtnno1/admin/delete_food.dart';
+import 'package:mtnno1/admin/edit_food.dart';
 
 class DatabaseMethods {
   Future addUserDetail(Map<String, dynamic> userInfoMap, String id) async {
